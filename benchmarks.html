@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>OhmDB - The Irresistible Database for Java Combining Great RDBMS and NoSQL Features</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<style>
+@import "bootstrap.min.css";
+
+@import "prettify.css";
+
+@import "ohmdb.css";
+</style>
+
+<script type="text/javascript" src="prettify.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="bootstrap3.min.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript" src="ohmdb.js"></script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+	lang: en_US
+</script>
+<script type="text/javascript" src="jquery.flot.js"></script>
+
+</head>
+
+<body onload="prettyPrint();">
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a id="title" class="navbar-brand" href="/">
+					<img src="ohmdb.png" width="32" />
+					<span> OhmDB</span>
+				</a>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="documentation.html">Documentation</a>
+					</li>
+					<li>
+						<a href="download.html">Download</a>
+					</li>
+					<li class="active">
+						<a href="benchmarks.html">Benchmarks</a>
+					</li>
+					<li>
+						<a href="community.html">Community &amp; Support</a>
+					</li>
+					<li>
+						<a href="about.html">About</a>
+					</li>
+				</ul>
+
+				&nbsp;
+				<a href="https://twitter.com/share" class="twitter-share-button navbar-btn" data-url="http://www.ohmdb.com"
+					data-text="OhmDB - The Irresistible #Database for #Java Combining Great #RDBMS and #NoSQL Features"
+					data-size="small"
+				>Tweet</a>
+				<span class="g-plusone" data-size="medium"></span>
+				<script type="IN/Share" data-url="http://www.ohmdb.com" data-counter="right"></script>
+
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<h2 id="tut_subtitle">
+					<span class="ohmdb">OhmDB</span>
+					Benchmarks
+				</h2>
+				<h4>On i7-4770 Quadcore, 32 GB DDR3 RAM (less than 2 GB used), Hard Drive SATA 6 Gb/s 7200 rpm</h4>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h3>
+					<b>Insert record (with 2 columns) in a table</b>
+				</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Operations per second:</span>
+				</h4>
+				<div id="insertA" style="width: 300px; height: 300px"></div>
+			</div>
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Latency in ms:</span>
+				</h4>
+
+				<div id="insertB" style="width: 300px; height: 300px"></div>
+			</div>
+		</div>
+
+		<div class="row row-separated">
+			<div class="col-md-12">
+				<h3>
+					<b>Update record (with 2 columns)</b>
+				</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Operations per second:</span>
+				</h4>
+				<div id="updateA" style="width: 300px; height: 300px"></div>
+			</div>
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Latency in ms:</span>
+				</h4>
+				<div id="updateB" style="width: 300px; height: 300px"></div>
+			</div>
+		</div>
+
+
+		<div class="row row-separated">
+			<div class="col-md-12">
+				<h3>
+					<b>Update 1 column of a record</b>
+				</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Operations per second:</span>
+				</h4>
+				<div id="setA" style="width: 300px; height: 300px"></div>
+			</div>
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Latency in ms:</span>
+				</h4>
+				<div id="setB" style="width: 300px; height: 300px"></div>
+			</div>
+		</div>
+
+
+		<div class="row row-separated">
+			<div class="col-md-12">
+				<h3>
+					<b>Create link in a relation</b>
+				</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Operations per second:</span>
+				</h4>
+				<div id="linkA" style="width: 300px; height: 300px"></div>
+			</div>
+			<div class="col-md-6">
+				<h4>
+					<span class="plotdesc">Latency in ms:</span>
+				</h4>
+				<div id="linkB" style="width: 300px; height: 300px"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$(function() {
+
+			function draw(id, id2, a, b) {
+				var data = [], data2 = [];
+
+				for (var i = 0; i < a.length; i++) {
+					data.push([ 2 * i, b[i] ]);
+					data2.push([ 2 * i, a[i] * 1000 / b[i] ]);
+				}
+
+				function nn(k){
+					return a[k] + "<br/>req";
+				}
+				
+				$.plot(id, [ {
+					data : data,
+					bars : {
+						show : true
+					}
+				} ], {
+					xaxis : {
+						ticks : [ [ 0.5, nn(0) ], [ 2.5, nn(1) ],
+								[ 4.5, nn(2) ], [ 6.5, nn(3) ],
+								[ 8.5, nn(4) ], [ 10.5, nn(5) ] ]
+					},
+
+				});
+
+				$.plot(id2, [ {
+					data : data2,
+					bars : {
+						show : true
+					}
+				} ], {
+					xaxis : {
+						ticks : [ [ 0.5, nn(0) ], [ 2.5, nn(1) ],
+									[ 4.5, nn(2) ], [ 6.5, nn(3) ],
+									[ 8.5, nn(4) ], [ 10.5, nn(5) ] ]
+					},
+
+				});
+
+			}
+
+			var ms = {"update":[165,161,155],"1 join(s)":[59,10,6],"setN":[100,200,300],"linkN":[2500,5000,7500],"set":[97,77,61],"1 join(s)N":[100,100,100],"link":[1885,1309,1732],"4 join(s)":[7549,6217,5309],"4 join(s)N":[100,100,100],"updateN":[100,200,300],"insertN":[100,200,300],"2 join(s)":[91,28,13],"3 join(s)N":[100,100,100],"insert":[418,112,126],"2 join(s)N":[100,100,100],"3 join(s)":[493,318,116]};
+			
+			draw("#insertB", "#insertA", ms.insertN, ms.insert);
+			draw("#updateB", "#updateA", ms.updateN, ms.update);
+			draw("#setB", "#setA", ms.setN, ms.set);
+			draw("#linkB", "#linkA", ms.linkN, ms.link);
+
+		});
+	</script>
+	
+	<p></p>
+	
+</body>
+</html>

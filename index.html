@@ -1,1 +1,270 @@
-ohmdb
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>OhmDB - The Irresistible Database for Java Combining Great RDBMS and NoSQL Features</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<style>
+@import "bootstrap.min.css";
+@import "prettify.css";
+@import "ohmdb.css";
+</style>
+
+<script type="text/javascript" src="prettify.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="bootstrap3.min.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript" src="ohmdb.js"></script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+
+</head>
+
+<body onload="prettyPrint();">
+
+<nav class="navbar navbar-inverse" role="navigation">
+<div class="container">
+  <div class="navbar-header">
+    <a id="title" class="navbar-brand" href="/"><img src="ohmdb.png" width="32" /><span> OhmDB</span></a>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="documentation.html">Documentation</a>
+					</li>
+					<li>
+						<a href="download.html">Download</a>
+					</li>
+					<li>
+						<a href="benchmarks.html">Benchmarks</a>
+					</li>
+					<li>
+						<a href="community.html">Community &amp; Support</a>
+					</li>
+					<li>
+						<a href="about.html">About</a>
+					</li>
+				</ul>
+
+				&nbsp;
+				<a href="https://twitter.com/share" class="twitter-share-button navbar-btn" data-url="http://www.ohmdb.com"
+					data-text="OhmDB - The Irresistible #Database for #Java Combining Great #RDBMS and #NoSQL Features"
+					data-size="small"
+				>Tweet</a>
+				<span class="g-plusone" data-size="medium"></span>
+				<script type="IN/Share" data-url="http://www.ohmdb.com" data-counter="right"></script>
+
+			</div>
+</div>
+</nav>
+
+	<div class="container">
+	
+	<div class="row">
+	<div class="col-md-12">
+	<h4 id="main_subtitle"><span class="ohmdb">OhmDB</span> - <span class="part1">The Irresistible Database for Java</span> - <span class="part2">JAR Running in Your JVM</span> - <span class="part3">Combining Great RDBMS and NoSQL Features</span></h4>
+	</div>
+	</div>
+	
+	<div class="row">
+	<div class="col-md-3">
+  		<a class="download label" href="download.html">Download OhmDB v1.0 Beta!</a>
+	</div>
+	<div class="col-md-3">
+  		<a class="readtut label" href="documentation.html">Read the introduction tutorial</a>
+	</div>
+	<div class="col-md-6">
+<!-- Begin MailChimp Signup Form -->
+<div id="mc_embed_signup">
+<form action="http://ohmdb.us3.list-manage.com/subscribe/post?u=c2c27aa25fdef31d9513d6124&amp;id=fdd36fe9b9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate>
+	
+<div class="mc-field-group">
+	<input type="email" value="" name="EMAIL" class="required email form-control input-sm" id="mce-EMAIL" placeholder="Your e-mail address">
+	<input type="submit" value="Subscribe to monthly newsletter" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary btn-sm"></input>
+</div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_c2c27aa25fdef31d9513d6124_fdd36fe9b9" value=""></div>
+	<div class="clear"></div>
+</form>
+</div>
+<!--End mc_embed_signup-->	
+  		
+	</div>
+	</div>
+	
+		<div class="row row-separated">
+
+			<div class="col-md-4">
+
+<p><span class="eg_title badge">The Irresistible database for Java</span></p>
+
+<p class="eg_text">
+OhmDB is <b>"the irresistible database"</b> that offers the power of relational databases and the flexibility of NoSQL databases.
+</p>
+
+<p><span class="eg_title badge">Easy to use</span></p>
+
+<pre class="prettyprint eg_code">
+OhmDB db = Ohm.db(&quot;my.db&quot;);
+Table&lt;Item&gt; items = db.table(Item.class);
+long id = items.insert(new Item(&quot;item1&quot;));
+</pre>
+
+<p><span class="eg_title badge">Easy setup and maintenance</span></p>
+
+<p class="eg_text">
+Just add <b>ohmdb.jar</b> to your project, and you are ready! All data is stored in a <b>single file (e.g. my.db)</b>, which makes <b>backups/duplications super-simple</b>!
+</p>
+
+<p><span class="eg_title badge">Type-safe queries</span></p>
+
+<pre class="prettyprint eg_code">
+Item i = items.queryHelper();
+Search&lt;Item&gt; it = items.where(i.title).eq(&quot;item1&quot;).and(i.published).eq(true);
+</pre>
+
+<p><span class="eg_title badge">Full ACID transactions</span></p>
+
+<p class="eg_text">
+Full support for <b>ACID</b> transactions, providing the same <b>high level of data safety</b> as relational databases. After <b>unexpected termination</b>, OhmDB <b>automatically detects and rollbacks</b> unfinished transactions.
+</p>
+
+			</div>
+
+			<div class="col-md-4">
+
+<p><span class="eg_title badge">Type-safe relations</span></p>
+
+<pre class="prettyprint eg_code">
+OneToMany&lt;Item, Tag&gt; tagged = db.oneToMany(items, &quot;tagged&quot;, tags);
+tagged.link(item1, tag1);
+tagged.delink(item2, tag2);
+</pre>
+
+<p><span class="eg_title badge">Very fast joins with graph-based relations</span></p>
+
+<p class="eg_text">
+A <b>single join has O(1) time complexity</b>. A combination of multiple joins is internally processed as <b>graph traversal</b> with <b>smart query optimization</b>.
+</p>
+
+<p><span class="eg_title badge">Elegant inner and outer joins</span></p>
+
+<pre class="prettyprint eg_code">
+Search&lt;Item&gt; publishedItems = items.where(i.published).eq(true);
+JoinResult publishedItemsWithTags = db.join(publishedItems, tagged, tags.any()).all();
+</pre>
+
+<p><span class="eg_title badge"><b>Serializable</b> transaction isolation</span></p>
+
+<p class="eg_text">
+OhmDB executes transactions with <b>serializable isolation level</b>. This is the highest isolation level, and <b>protects against bugs</b> caused by read phenomena (<i>dirty reads</i>, <i>non-repeatable reads</i>, <i>phantom reads</i>).
+</p>
+
+<p><span class="eg_title badge">Your custom Java triggers</span></p>
+
+<pre class="prettyprint eg_code">
+db.before(Item.class).inserted().or().updated().run(new LoggingTrigger&lt;Item&gt;());
+</pre>
+
+			</div>
+
+			<div class="col-md-4">
+			
+<p><span class="eg_title badge">OhmDB vs RDBMS vs NoSQL - No Silver Bullet!</span></p>
+			
+			<table class="table table-stripped">
+  <tr>
+  <td></td>
+  <th>OhmDB</th>
+  <th>RDBMS</th>
+  <th>NoSQL</th>
+  </tr>
+  <tr>
+  <td><span>Data complexity</span></td>
+  <td class="good">Unlimited</td>
+  <td class="good">Unlimited</td>
+  <td class="bad">Limited</td>
+  </tr>
+  <tr>
+  <td><span>Relations</span></td>
+  <td class="good">Graph-based</td>
+  <td class="good">Yes</td>
+  <td><span class="good">Graph-based</span> or <span class="bad">none</span></td>
+  </tr>
+  <tr>
+  <td><span>JOINS</span></td>
+  <td class="good">Fast</td>
+  <td class="mid">Slow</td>
+  <td><span class="good">Fast</span> or <span class="bad">none</span></td>
+  </tr>
+  <tr>
+  <td><span>Transactions</span></td>
+  <td class="good">ACID</td>
+  <td class="good">ACID</td>
+  <td class="mid">Limited</td>
+  </tr>
+  <tr>
+  <td><span>Schema</span></td>
+  <td class="good">Strict</td>
+  <td class="good">Strict</td>
+  <td class="good">Flexible</td>
+  </tr>
+  <tr>
+  <td><span>Schema migration</span></td>
+  <td class="good">Automatic</td>
+  <td class="bad">Manual</td>
+  <td class="good">Automatic</td>
+  </tr>
+  <tr>
+  <td><span>Agile-friendly</span></td>
+  <td class="good">Yes</td>
+  <td class="bad">No</td>
+  <td class="good">Yes</td>
+  </tr>
+  <tr>
+  <td><span>Data capacity</span></td>
+  <td class="mid">Limited to RAM</td>
+  <td class="good">Unlimited</td>
+  <td class="good">Unlimited</td>
+  </tr>
+  <tr>
+  <td><span>Scale Up</span></td>
+  <td class="good">Yes</td>
+  <td class="good">Yes</td>
+  <td class="good">Yes</td>
+  </tr>
+  <tr>
+  <td><span>Replication</span></td>
+  <td class="bad">Not yet</td>
+  <td class="good">Yes</td>
+  <td class="good">Yes</td>
+  </tr>
+  <tr>
+  <td><span>Partitioning</span></td>
+  <td class="bad">Not yet</td>
+  <td class="good">Yes</td>
+  <td class="good">Yes</td>
+  </tr>
+</table>
+<p>
+Let's learn Java 8 at <a href="http://www.java8.org">java8.org</a>!
+</p>
+			</div>
+
+		</div>
+
+	</div>
+
+<a href="https://github.com/ohmdb/ohmdb"><img style="z-index: 99999; position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_aa0000.png"></a>
+
+</body>
+</html>
