@@ -99,7 +99,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>
-					<span class="plotdesc">Latency in ms:</span>
+					<span class="plotdesc">Total time in ms:</span>
 				</h4>
 
 				<div id="insertB" style="width: 300px; height: 300px"></div>
@@ -122,7 +122,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>
-					<span class="plotdesc">Latency in ms:</span>
+					<span class="plotdesc">Total time in ms:</span>
 				</h4>
 				<div id="updateB" style="width: 300px; height: 300px"></div>
 			</div>
@@ -145,7 +145,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>
-					<span class="plotdesc">Latency in ms:</span>
+					<span class="plotdesc">Total time in ms:</span>
 				</h4>
 				<div id="setB" style="width: 300px; height: 300px"></div>
 			</div>
@@ -168,7 +168,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>
-					<span class="plotdesc">Latency in ms:</span>
+					<span class="plotdesc">Total time in ms:</span>
 				</h4>
 				<div id="linkB" style="width: 300px; height: 300px"></div>
 			</div>
@@ -221,7 +221,7 @@
 
 			}
 
-			var ms = {"update":[71,87,85,151,183],"1 join(s)":[14,3,2,1,2],"setN":[100,500,1000,5000,10000],"linkN":[2500,12500,25000,125000,250000],"set":[61,48,32,118,188],"1 join(s)N":[100,100,100,100,100],"link":[439,914,1407,7404,24792],"4 join(s)":[1598,1059,806,433,377],"4 join(s)N":[100,100,100,100,100],"updateN":[100,500,1000,5000,10000],"insertN":[100,500,1000,5000,10000],"2 join(s)":[24,6,5,2,2],"3 join(s)N":[100,100,100,100,100],"insert":[176,72,111,168,260],"2 join(s)N":[100,100,100,100,100],"3 join(s)":[76,120,22,14,13]};
+			var ms = {"update":[71,97,77,142,201],"1 join(s)":[14,3,2,1,2],"setN":[100,500,1000,5000,10000],"linkN":[2500,12500,25000,125000,250000],"set":[61,87,62,77,198],"1 join(s)N":[100,100,100,100,100],"link":[432,969,1310,11149,31609],"4 join(s)":[1796,1109,833,457,376],"4 join(s)N":[100,100,100,100,100],"updateN":[100,500,1000,5000,10000],"insertN":[100,500,1000,5000,10000],"2 join(s)":[29,6,4,2,2],"3 join(s)N":[100,100,100,100,100],"insert":[206,97,129,119,286],"2 join(s)N":[100,100,100,100,100],"3 join(s)":[88,32,21,14,13]};
 			
 			draw("#insertB", "#insertA", ms.insertN, ms.insert);
 			draw("#updateB", "#updateA", ms.updateN, ms.update);

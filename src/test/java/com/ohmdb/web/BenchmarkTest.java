@@ -61,7 +61,7 @@ public class BenchmarkTest {
 
 	private void benchmark(int factor) {
 		int usersN = 100 * factor;
-		int friendsN = 50;
+		int friendsN = 20;
 
 		System.out.println("Benchmark: " + usersN + " users, each has " + friendsN + " friends in average\n");
 
@@ -71,7 +71,7 @@ public class BenchmarkTest {
 		update(usersN);
 		set(usersN);
 
-		long[] all = makeFriends(usersN, friendsN / 2);
+		long[] all = makeFriends(usersN, friendsN);
 
 		Db db = Ohm.db(DB_FILENAME);
 
