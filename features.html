@@ -68,7 +68,7 @@
 	
 	<div class="row">
 	<div class="col-md-12">
-	<h4 id="main_subtitle"><span class="ohmdb">OhmDB - The Irresistible RDBMS + NoSQL Database for Java - Running in Your JVM - Apache Licensed</span></h4>
+	<h4 id="main_subtitle"><span class="ohmdb">OhmDB</span> - <span class="part1">The Irresistible Database for Java</span> - <span class="part2">JAR Running in Your JVM</span> - <span class="part3">Combining Great RDBMS and NoSQL Features</span></h4>
 	</div>
 	</div>
 	
@@ -103,42 +103,77 @@
 	
 		<div class="row row-separated">
 
-			<div class="col-md-8">
+			<div class="col-md-4">
 
-<p><span class="eg_title badge">Add it to your project as Maven dependency:</span></p>
+<p><span class="eg_title badge">The Irresistible database for Java</span></p>
+
+<p class="eg_text">
+OhmDB is <b>"the irresistible database"</b> that offers the power of relational databases and the flexibility of NoSQL databases.
+</p>
+
+<p><span class="eg_title badge">Easy to use</span></p>
 
 <pre class="prettyprint eg_code">
-&lt;dependency&gt;
-    &lt;groupId&gt;com.ohmdb&lt;/groupId&gt;
-    &lt;artifactId&gt;ohmdb-all&lt;/artifactId&gt;
-    &lt;version&gt;1.0.0&lt;/version&gt;
-&lt;/dependency&gt;
+OhmDB db = Ohm.db(&quot;my.db&quot;);
+Table&lt;Item&gt; items = db.table(Item.class);
+long id = items.insert(new Item(&quot;item1&quot;));
 </pre>
 
-<p><span class="eg_title badge">Add this code to your project and run it:</span></p>
-<pre class="prettyprint eg_code bigger">
-import com.ohmdb.api.*;
+<p><span class="eg_title badge">Easy setup and maintenance</span></p>
 
-class Person { public String name; public int age; }
+<p class="eg_text">
+Just add <b>ohmdb.jar</b> to your project, and you are ready! All data is stored in a <b>single file (e.g. my.db)</b>, which makes <b>backups/duplications super-simple</b>!
+</p>
 
-public class Main {
-   public static void main(String[] args) {
-      Db db = Ohm.db(&quot;ohm.db&quot;);
-      Table&lt;Person&gt; persons = db.table(Person.class);
-      Person $p = persons.queryHelper();
+<p><span class="eg_title badge">Type-safe queries</span></p>
 
-      Person p1 = new Person();
-      p1.name = &quot;Niko&quot;;
-      p1.age = 30;
-      long id = persons.insert(p1);
-      Person p2 = persons.get(id);
-
-      persons.createIndexOn($p.age);
-      Person[] adults = persons.where($p.age).gte(18).get();
-   }
-}
+<pre class="prettyprint eg_code">
+Item i = items.queryHelper();
+Search&lt;Item&gt; it = items.where(i.title).eq(&quot;item1&quot;).and(i.published).eq(true);
 </pre>
 
+<p><span class="eg_title badge">Full ACID transactions</span></p>
+
+<p class="eg_text">
+Full support for <b>ACID</b> transactions, providing the same <b>high level of data safety</b> as relational databases. After <b>unexpected termination</b>, OhmDB <b>automatically detects and rollbacks</b> unfinished transactions.
+</p>
+
+			</div>
+
+			<div class="col-md-4">
+
+<p><span class="eg_title badge">Type-safe relations</span></p>
+
+<pre class="prettyprint eg_code">
+OneToMany&lt;Item, Tag&gt; tagged = db.oneToMany(items, &quot;tagged&quot;, tags);
+tagged.link(item1, tag1);
+tagged.delink(item2, tag2);
+</pre>
+
+<p><span class="eg_title badge">Very fast joins with graph-based relations</span></p>
+
+<p class="eg_text">
+A <b>single join has O(1) time complexity</b>. A combination of multiple joins is internally processed as <b>graph traversal</b> with <b>smart query optimization</b>.
+</p>
+
+<p><span class="eg_title badge">Elegant inner and outer joins</span></p>
+
+<pre class="prettyprint eg_code">
+Search&lt;Item&gt; publishedItems = items.where(i.published).eq(true);
+JoinResult publishedItemsWithTags = db.join(publishedItems, tagged, tags.any()).all();
+</pre>
+
+<p><span class="eg_title badge"><b>Serializable</b> transaction isolation</span></p>
+
+<p class="eg_text">
+OhmDB executes transactions with <b>serializable isolation level</b>. This is the highest isolation level, and <b>protects against bugs</b> caused by read phenomena (<i>dirty reads</i>, <i>non-repeatable reads</i>, <i>phantom reads</i>).
+</p>
+
+<p><span class="eg_title badge">Your custom Java triggers</span></p>
+
+<pre class="prettyprint eg_code">
+db.before(Item.class).inserted().or().updated().run(new LoggingTrigger&lt;Item&gt;());
+</pre>
 
 			</div>
 
