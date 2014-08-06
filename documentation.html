@@ -94,20 +94,18 @@
 		<div class="row">
 			<div class="col-md-12">
 			
-<h3 class="tut_title">1. Creating the database</h3>
+
+<h3 class="tut_title">1. new File("socialnet.db").delete();<br/>Creating the database</h3>
 <p><span class="tut_desc">Let's "make" a simple social network application. The first thing we need is a database, so let's create one.</span></p>
 <pre class="prettyprint eg_code lang-java">
-OhmDB db = Ohm.db(&quot;socialnet.db&quot;);
+Db db = Ohm.db(&quot;socialnet.db&quot;);
 </pre>
-<pre>Creating database: socialnet.db...
-Database is ready.</pre>
 
 <h3 class="tut_title">2. Creating a table</h3>
 <p><span class="tut_desc">Now let's create your first table - table of users.</span></p>
 <pre class="prettyprint eg_code lang-java">
 Table&lt;User&gt; users = db.table(User.class);
 </pre>
-
 
 <h3 class="tut_title">3. Insert records</h3>
 <p><span class="tut_desc">Next thing you need to do is to insert some users into the table using <span class="methodref">insert</span> method.</span></p>
@@ -128,7 +126,6 @@ long id6 = users.insert(new User(&quot;bella.santorini&quot;, &quot;Bella Santor
 long id7 = users.insert(new User(&quot;bob_wood&quot;, &quot;Bob Wood&quot;, 30, &quot;New York&quot;));
 </pre>
 
-
 <h3 class="tut_title">4. Print the table</h3>
 <p><span class="tut_desc">Now you have a table filled with some users. You can print all the records from a table into the standard output using the <span class="methodref">print</span> method. This method is useful during development and debugging.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -143,14 +140,12 @@ User [id=4, username=tcapelo, age=25, city=Milano]
 User [id=5, username=natasa_b, age=22, city=Moscow]
 User [id=6, username=bella.santorini, age=24, city=Milano]
 User [id=7, username=bob_wood, age=30, city=New York]</pre>
-
 <h3 class="tut_title">5. Table size</h3>
 <p><span class="tut_desc">The number of records in a table is retrieved using the <span class="methodref">size</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
 debug(&quot;Users table size&quot;, users.size());
 </pre>
 <pre>Users table size: 8</pre>
-
 <h3 class="tut_title">6. Get record by ID</h3>
 <p><span class="tut_desc">Fetching a record by its ID is done with the <span class="methodref">get</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -159,7 +154,6 @@ User u1 = users.get(id1);
 debug(&quot;User with id=&quot; + id1 + &quot; is &quot; + u1);
 </pre>
 <pre>User with id=1 is User [id=1, username=jd357, age=30, city=New York]</pre>
-
 <h3 class="tut_title">7. Get records by IDs</h3>
 <p><span class="tut_desc">Fetching records by their IDs is done with the <span class="methodref">getAll</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -168,7 +162,6 @@ User[] userlist = users.getAll(id1, id2, id3);
 debug(&quot;Users by ids: &quot;, userlist);
 </pre>
 <pre>Users by ids: : [User [id=1, username=jd357, age=30, city=New York], User [id=2, username=abastien, age=28, city=Paris], User [id=3, username=mary_NY, age=32, city=New York]]</pre>
-
 <h3 class="tut_title">8. Change column value</h3>
 <p><span class="tut_desc">The <span class="methodref">set</span> method can be used to change the value of a column for a specific record.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -180,7 +173,6 @@ debug(&quot;User after set&quot;, users.get(id2));
 </pre>
 <pre>User before set: User [id=2, username=abastien, age=28, city=Paris]
 User after set: User [id=2, username=dean.john, age=28, city=Paris]</pre>
-
 <h3 class="tut_title">9. Update record</h3>
 <p><span class="tut_desc">The <span class="methodref">update</span> method can be used to update a record in a table. All the columns values will be updated with the new values from the specified bean. The target record ID is retrieved from the "id" field/property of the specified bean.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -195,7 +187,6 @@ debug(&quot;After update&quot;, users.get(id1));
 </pre>
 <pre>Before update: User [id=1, username=jd357, age=30, city=New York]
 After update: User [id=1, username=adele73, age=30, city=New York]</pre>
-
 <h3 class="tut_title">10. Update record by specifying ID</h3>
 <p><span class="tut_desc">The <span class="methodref">update</span> method can also be used to update a record in a table, by specifying its ID. All the columns values will be updated with the new values from the specified bean.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -208,11 +199,10 @@ debug(&quot;After update&quot;, users.get(id2));
 </pre>
 <pre>Before update: User [id=2, username=dean.john, age=28, city=Paris]
 After update: User [id=2, username=jack.green, age=30, city=New York]</pre>
-
 <h3 class="tut_title">11. Update record from a map</h3>
 <p><span class="tut_desc">A record can be also updated by specifying its new column values in a map.</span></p>
 <pre class="prettyprint eg_code lang-java">
-Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
 
 map.put(&quot;username&quot;, &quot;xman_jd&quot;);
 map.put(&quot;age&quot;, 18);
@@ -225,7 +215,6 @@ debug(&quot;After update&quot;, users.get(id2));
 </pre>
 <pre>Before update: User [id=2, username=jack.green, age=30, city=New York]
 After update: User [id=2, username=xman_jd, age=18, city=New York]</pre>
-
 <h3 class="tut_title">12. Delete record</h3>
 <p><span class="tut_desc">You can delete a record by its ID using the <span class="methodref">delete</span> method:</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -237,7 +226,6 @@ debug(&quot;Users after delete&quot;, users.size());
 </pre>
 <pre>Users before delete: 8
 Users after delete: 7</pre>
-
 <h3 class="tut_title">13. Get all records' IDs</h3>
 <p><span class="tut_desc">The <span class="methodref">ids</span> method retrieves the IDs of all records in the table.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -246,7 +234,6 @@ long[] allUserIds = users.ids();
 debug(&quot;All IDs of users&quot;, allUserIds);
 </pre>
 <pre>All IDs of users: [0, 1, 2, 3, 4, 5, 7]</pre>
-
 <h3 class="tut_title">14. Searching and indexing</h3>
 <p><span class="tut_desc">Let's make a simple search, for example to find all users that have "tcapelo" as their username.<br/><br/> This can be done in a couple of ways. Let's examine the simplest way first. An index on column "username" is created using method <span class="methodref">createIndexOnNamed</span>. Afterwards, the search is conducted using the <span class="methodref">where</span> method, where you can state by what column the search to be made on.<br/><br/> This method gives a criteria as result, which could be "equals" represented with <span class="methodref">eq</span> method, "greater that" represented with <span class="methodref">gt</span> method, "greater than or equal" represented with <span class="methodref">gte</span> method, "less than" represented with <span class="methodref">lt</span> method, "less than or equal" represented with <span class="methodref">lte</span> and "not equal" represented with <span class="methodref">neq</span> method.<br/><br/> In this case, <span class="methodref">eq</span> method will do the trick. Nevertheless, specifying the column name as string is error-prone, so you have to be careful not to make a naive spelling mistake, or take a look at the type-safe approach described next.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -254,7 +241,6 @@ users.createIndexOnNamed(&quot;username&quot;);
 users.where(&quot;username&quot;, String.class).eq(&quot;tcapelo&quot;).print();
 </pre>
 <pre>User [id=4, username=tcapelo, age=25, city=Milano]</pre>
-
 <h3 class="tut_title">15. Type-safe searching and indexing</h3>
 <p><span class="tut_desc">The type-safe way to make a search is by using <span class="methodref">queryHelper</span> method. It creates a special kind of query helper object, in this case - User, which can be used afterwards in the search.<br/><br/> Using the query helper, an index is created with the <span class="methodref">createIndexOn</span> method. Finally the search is conducted using the <span class="methodref">where</span> method with the column expressed in a type-safe way with the query helper.<br/><br/> This way of searching/indexing is much safer because there is no place for misspelling, or making an error on the type of the column. It also helps a lot when refactoring (e.g. renaming a column).</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -265,7 +251,6 @@ users.createIndexOn(u.username);
 users.where(u.username).eq(&quot;tcapelo&quot;).print();
 </pre>
 <pre>User [id=4, username=tcapelo, age=25, city=Milano]</pre>
-
 <h3 class="tut_title">16. Query helpers unmystified</h3>
 <p><span class="tut_desc">To explain how the query helpers work, let's do some "magic". The query helpers contain encoding information in their field/property values, which is used to retrieve the column name.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -274,7 +259,6 @@ debug(u.age + &quot; =&gt; &quot; + users.nameOf(u.age));
 </pre>
 <pre>0 => username
 1 => age</pre>
-
 <h3 class="tut_title">17. Custom searching and indexing</h3>
 <p><span class="tut_desc">Sometimes a more custom search is needed. For example, what if case-insensitive search is required? The method <span class="methodref">createIndexOn</span> also can be used with a second argument of type Transformer, which serves to transform both the indexed values and the searched values.<br/><br/> In this case, the lower-case value of column <span class="named">username</span> is used for the index. When a search is conducted, the lower-case version of the searched value is matched in the index.<br/><br/> Additionally, the method <span class="methodref">createIndexOnNamed</span> can be used with transformer as a second argument too.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -285,7 +269,6 @@ users.createIndexOn(u.username, new Transformer&lt;String&gt;() {
 	}
 });
 </pre>
-
 
 <h3 class="tut_title">18. Searching by multiple criteria</h3>
 <p><span class="tut_desc">A conjunction and disjunction of search criteria is constructed using the <span class="methodref">and</span> and <span class="methodref">or</span> methods.</span></p>
@@ -314,7 +297,6 @@ User [id=2, username=xman_jd, age=18, city=New York]
 User [id=3, username=mary_NY, age=32, city=New York]
 User [id=4, username=tcapelo, age=25, city=Milano]
 User [id=5, username=natasa_b, age=22, city=Moscow]</pre>
-
 <h3 class="tut_title">19. Paging</h3>
 <p><span class="tut_desc">When there are a lot of records as a result of a search, it is useful to be able to see just a part of the results. The <span class="methodref">top</span>, <span class="methodref">bottom</span> and <span class="methodref">range</span> methods can be used to get the search results in a specified range.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -340,7 +322,6 @@ User [id=5, username=natasa_b, age=22, city=Moscow]
 
 2nd to 5th result of the search:
 User [id=5, username=natasa_b, age=22, city=Moscow]</pre>
-
 <h3 class="tut_title">20. Get optional result</h3>
 <p><span class="tut_desc">You can use the <span class="methodref">getIfExists</span> method in a search to get a record if it exists. If the record does not exist, null is returned.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -353,7 +334,6 @@ if (usr != null) {
 }
 </pre>
 <pre>There exists a user named Toni Capelo and here it is: User [id=4, username=tcapelo, age=25, city=Milano]</pre>
-
 <h3 class="tut_title">21. Get exactly one result</h3>
 <p><span class="tut_desc">You can use <span class="methodref">getOnly</span> method in a search to get the only one expected result that satisfies the criteria, or throw exception otherwise.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -366,7 +346,6 @@ try {
 }
 </pre>
 <pre>The only one user living in Milano: User [id=4, username=tcapelo, age=25, city=Milano]</pre>
-
 <h3 class="tut_title">22. Parameterized queries</h3>
 <p><span class="tut_desc">Parameterized queries can be constructed and later bound with values:</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -383,7 +362,6 @@ search.bind(age.as(23)).print();
 <pre>Younger than 28
 
 Younger than 23</pre>
-
 <h3 class="tut_title">23. Custom calculated index</h3>
 <p><span class="tut_desc">Often more complex indexing is needed. What if it you have to search on a combination of a columns of the records? You can create a custom index calling the <span class="methodref">index</span> method with a <span class="methodref">Mapper</span> object which calculates the custom index value from the column values of a given record, and the columns that are used in the calculation of the index value.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -399,7 +377,6 @@ users.where(name_age).eq(&quot;tcapelo_28&quot;).print();
 users.where(name_age).eq(&quot;tcapelo_28&quot;).or(name_age).eq(&quot;tcapelo_30&quot;).print();
 </pre>
 
-
 <h3 class="tut_title">24. Multi-value indexing: full-text search</h3>
 <p><span class="tut_desc">Full-text searching on a column requires indexing on each word found in the value. This is called `multi-value` indexing, because more then one value will be indexed per column per record.<br/><br/> The <span class="methodref">multiIndex</span> method is called with a <span class="methodref">Mapper</span> object (which calculates the custom index values from the column values of a given record) and the columns that are used in the calculation of the index values.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -413,7 +390,6 @@ CustomIndex&lt;User, String&gt; words = users.multiIndex(new Mapper&lt;User, Str
 users.where(words).eq(&quot;Adele&quot;).or(words).eq(&quot;Santorini&quot;).print();
 </pre>
 
-
 <h3 class="tut_title">25. More tables</h3>
 <p><span class="tut_desc">Now, let's proceed with the development of database for the social network application. This is a very simple social network where users have their own walls on which they or their friends can write and like posts and comments. In the following code tables <span class="named">posts</span>, <span class="named">walls</span> and <span class="named">comments</span> are created.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -422,14 +398,12 @@ Table&lt;Wall&gt; walls = db.table(Wall.class);
 Table&lt;Comment&gt; comments = db.table(Comment.class);
 </pre>
 
-
 <h3 class="tut_title">26. OneToOne relations</h3>
 <p><span class="tut_desc">Each user can have only one wall. This oneToOne relation is modeled using method <span class="methodref">oneToOne</span> from our database instance db. This relation is named "owns". Analogous to that, each wall is "owned" by only one user, which is appropriately modeled into the following code by using <span class="methodref">inversed</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
 OneToOne&lt;User, Wall&gt; owns = db.oneToOne(users, &quot;owns&quot;, walls);
 OneToOne&lt;Wall, User&gt; ownedBy = owns.inversed();
 </pre>
-
 
 <h3 class="tut_title">27. OneToMany relations</h3>
 <p><span class="tut_desc">An user can make posts and write comments. There can be many posts on a wall. One user can make many posts and comments.These "oneToMany" relations are modeled by <span class="methodref">oneToMany</span> method.</span></p>
@@ -439,7 +413,6 @@ OneToMany&lt;Post, Comment&gt; hasComment = db.oneToMany(posts, &quot;hasC&quot;
 OneToMany&lt;User, Post&gt; makes = db.oneToMany(users, &quot;makes&quot;, posts);
 </pre>
 
-
 <h3 class="tut_title">28. Inverse relations</h3>
 <p><span class="tut_desc">There can be many posts on one wall, many comments on one post, many posts and comments from one user. These "manyToOne" relations are modeled by <span class="methodref">inversed</span> method on previously described "oneToMany" relations.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -448,14 +421,12 @@ ManyToOne&lt;Comment, Post&gt; belongsTo = hasComment.inversed();
 ManyToOne&lt;Post, User&gt; madeBy = makes.inversed();
 </pre>
 
-
 <h3 class="tut_title">29. ManyToOne relations</h3>
 <p><span class="tut_desc">Analogically on previously described relations, the relation "manyToOne" can be modeled by <span class="methodref">manyToOne</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
 ManyToOne&lt;Comment, User&gt; writtenBy = db.manyToOne(comments, &quot;writtenBy&quot;, users);
 OneToMany&lt;User, Comment&gt; writes = writtenBy.inversed();
 </pre>
-
 
 <h3 class="tut_title">30. ManyToMany relations</h3>
 <p><span class="tut_desc">Many users can make likes on many comments and posts.These "manyToMany" relations are modeled by <span class="methodref">manyToMany</span> method.</span></p>
@@ -467,13 +438,11 @@ ManyToMany&lt;Comment, User&gt; commentLikedBy = likesComment.inversed();
 ManyToMany&lt;Post, User&gt; likedBy = likes.inversed();
 </pre>
 
-
 <h3 class="tut_title">31. Symmetric relations</h3>
 <p><span class="tut_desc">Each user can have many friends. That is modeled by "friend" relation between users, and because this is a symmetric relationship between entities from the same type, <span class="methodref">manyToManySymmetric</span> method is used.</span></p>
 <pre class="prettyprint eg_code lang-java">
 ManyToMany&lt;User, User&gt; friend = db.manyToManySymmetric(users, &quot;friend&quot;, users);
 </pre>
-
 
 <h3 class="tut_title">32. Creating relation records: use of the <span class="methodref">link</span> method 1</h3>
 <p><span class="tut_desc">Here a new wall record is created and inserted into walls table. Afterward a link is created between user1 and the wall by their ids.</span></p>
@@ -483,7 +452,6 @@ walls.insert(wall1);
 owns.link(id1, wall1.id);
 </pre>
 
-
 <h3 class="tut_title">33. Creating relation records: use of the <span class="methodref">link</span> method 2</h3>
 <p><span class="tut_desc">Here the same thing is done, but on another way. The link created here is made by entities.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -491,7 +459,6 @@ Wall wall2 = new Wall();
 walls.insert(wall2);
 owns.link(user2, wall2);
 </pre>
-
 
 <h3 class="tut_title">34. First query: use of <span class="methodref">join</span> method</h3>
 <p><span class="tut_desc">Here a simple query is created: Find all users who own walls. To accomplish that, it is necessary to join two tables, users and walls by "own" relation. That is done by the <span class="methodref">join</span> method. You can notice that here also <span class="methodref">any</span> method is used on both tables. It's purpose is to get all user ids and all walls ids.The result from the following query is a JoinResult object, which you can see as an object containing array of links representing joins. In this case, because the join is made only on two tables, users and wall, the array has only one links object.</span></p>
@@ -502,7 +469,6 @@ debug(&quot;Query: users with walls =&gt; &quot; + usersWalls);
 <pre>Query: users with walls => [
   {1 : [8] , 2 : [9] }
 ]</pre>
-
 <h3 class="tut_title">35. First query: use of <span class="methodref">links</span> method</h3>
 <p><span class="tut_desc">We can access the links obtained in the join result from the previous example using the <span class="methodref">links</span> method. Here we have Links array of size one. Every element of such an array is an object containing joins represented as mappings between ids of joined tables records. In this case, because the join is made only on two tables, users and wall, the array has only one object. In this example the variable links of type Links is used to keep the value of the first links object.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -510,7 +476,6 @@ Links links = usersWalls.links()[0];
 debug(&quot;The user -&gt; wall links are&quot;, links);
 </pre>
 <pre>The user -> wall links are: {1 : [8] , 2 : [9] }</pre>
-
 <h3 class="tut_title">36. First query: use of <span class="methodref">from</span> and <span class="methodref">to</span> methods</h3>
 <p><span class="tut_desc">Because at this time our social network has only two users with walls, links object is consisted of two joins. Because the relation owns is oneToOne relation, every join is represented as first entity id as key (user id in this case) which is mapped to an array of second entity ids (in this case the array is of size one). In this code section it is shown how the first join results can be accessed by using <span class="methodref">from</span> and <span class="methodref">to</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -520,7 +485,6 @@ Wall exmpl_wall = walls.get(links.to(1)[0]);
 debug(&quot;First join &quot;, exmpl_user + &quot; to &quot; + exmpl_wall);
 </pre>
 <pre>First join : User [id=2, username=xman_jd, age=18, city=New York] to Wall [id=9]</pre>
-
 <h3 class="tut_title">37. Left join</h3>
 <p><span class="tut_desc">This is an example of how to make left join using <span class="methodref">leftJoin</span> method. Here the result contains all user records.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -530,7 +494,6 @@ debug(&quot;Left join on users and walls result &quot;, userWallsL);
 <pre>Left join on users and walls result : [
   {0 : [] , 1 : [8] , 2 : [9] , 3 : [] , 4 : [] , 5 : [] , 7 : [] }
 ]</pre>
-
 <h3 class="tut_title">38. Right join</h3>
 <p><span class="tut_desc">This is an example of how to make right join using <span class="methodref">rightJoin</span> method. Here the result contains all wall records.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -540,7 +503,6 @@ debug(&quot;Right join on users and walls result&quot;, userWallsR);
 <pre>Right join on users and walls result: [
   {-1 : [] , 1 : [8] , 2 : [9] }
 ]</pre>
-
 <h3 class="tut_title">39. The use of <span class="methodref">exists</span> method</h3>
 <p><span class="tut_desc">This is an example of how to check if there exist any users who are friends with any other users. That can be done by using <span class="methodref">exists</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -548,7 +510,6 @@ boolean userFriends = db.join(users.all(), friend, users.all()).exists();
 debug(&quot;Right join on users and walls result&quot;, userFriends);
 </pre>
 <pre>Right join on users and walls result: false</pre>
-
 <h3 class="tut_title">40. More data</h3>
 <p><span class="tut_desc">In order to proceed with our social network simulation, posts, comments and walls tables must be populated with some records. Also some relations need to be created with those records of the relations.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -593,7 +554,6 @@ likesComment.link(id0, cid1);
 madeBy.link(pid1, id2);
 </pre>
 
-
 <h3 class="tut_title">41. Printing of relations</h3>
 <p><span class="tut_desc">The relations also can be printed using <span class="methodref">print</span> method</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -601,9 +561,13 @@ debug(&quot;Relation: likes =&gt;&quot;);
 likes.print();
 </pre>
 <pre>Relation: likes =>
-=== RELATION TABLE<User> => likes => TABLE<Post> ===
-0=[10, 12] , 1=[11] , 2=[10] , 4=[10, 12] , 7=[10]</pre>
-
+=== RELATION TABLE<User> => likes => TABLE<Post> (5:3) ===
+0 -> [10, 12]
+1 -> [11]
+2 -> [10]
+4 -> [10, 12]
+7 -> [10]
+===</pre>
 <h3 class="tut_title">42. Relations: <span class="methodref">delink</span> method</h3>
 <p><span class="tut_desc">Let's say that user 4 no longer likes post 3, so he dislikes it. This is done by the <span class="methodref">delink</span> method. It's purpose is to delete an existing relation between two entities.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -614,13 +578,22 @@ debug(&quot;Relations \&quot;likes\&quot; after the dislike =&gt;&quot;);
 likes.print();
 </pre>
 <pre>Relations "likes" before the dislike =>
-=== RELATION TABLE<User> => likes => TABLE<Post> ===
-0=[10, 12] , 1=[11] , 2=[10] , 4=[10, 12] , 7=[10] 
+=== RELATION TABLE<User> => likes => TABLE<Post> (5:3) ===
+0 -> [10, 12]
+1 -> [11]
+2 -> [10]
+4 -> [10, 12]
+7 -> [10]
+===
 
 Relations "likes" after the dislike =>
-=== RELATION TABLE<User> => likes => TABLE<Post> ===
-0=[10, 12] , 1=[11] , 2=[10] , 4=[10] , 7=[10]</pre>
-
+=== RELATION TABLE<User> => likes => TABLE<Post> (5:3) ===
+0 -> [10, 12]
+1 -> [11]
+2 -> [10]
+4 -> [10]
+7 -> [10]
+===</pre>
 <h3 class="tut_title">43. Example 1</h3>
 <p><span class="tut_desc">Query 1. Friends of user X who liked post Y .</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -636,7 +609,6 @@ debug(jr1);
   {},
   {}
 ]</pre>
-
 <h3 class="tut_title">44. Example 2</h3>
 <p><span class="tut_desc">Query 2. Friends of user A who liked posts posted by user B.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -655,7 +627,6 @@ debug(jr2);
   {2 : [10] , 4 : [10] , 7 : [10] },
   {10 : [2] }
 ]</pre>
-
 <h3 class="tut_title">45. Example 3</h3>
 <p><span class="tut_desc">Query 3. Friends of user C who liked post D and are older than 25.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -672,7 +643,6 @@ debug(jr3);
   {},
   {}
 ]</pre>
-
 <h3 class="tut_title">46. Example 4</h3>
 <p><span class="tut_desc">Query 4. All of user M friends who have written comment on post N.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -690,7 +660,6 @@ debug(jr4);
   {},
   {}
 ]</pre>
-
 <h3 class="tut_title">47. Example 5</h3>
 <p><span class="tut_desc">Query 5. All mutual friends of users Z and T who have liked comment on post Q.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -710,7 +679,6 @@ debug(jr5);
   {0 : [13] },
   {13 : [10] }
 ]</pre>
-
 <h3 class="tut_title">48. Triggers</h3>
 <p><span class="tut_desc">You can make your own trigger by implementing the Trigger interface on your trigger class. You have to implement the <span class="methodref">process</span> method. The triggers can be placed after or before some action is executed. The action could be insertion, deletion or updating of a table. The following code shows the use of <span class="methodref">after</span>, <span class="methodref">before</span>, <span class="methodref">deleted</span>, <span class="methodref">inserted</span> ,<span class="methodref">updated</span> methods. The action of the trigger is assigned with <span class="methodref">run</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -723,7 +691,6 @@ db.before(User.class).inserted().run(new ExampleTrigger&lt;User&gt;());
 db.before(User.class).updated().run(new ExampleTrigger&lt;User&gt;());
 </pre>
 
-
 <h3 class="tut_title">49. Transaction</h3>
 <p><span class="tut_desc">A transaction is started using <span class="methodref">startTransaction</span> method. Then you write all the actions that you want to be executed in an atomic manner. Here the transaction consists of deleting users together with their walls. When one user is deleted, its wall has to be deleted too. If this actions are executed out of transaction, this scenario can happen: the user gets deleted, but something went wrong when the deletion of the wall should have taken place (for example the power went down after the user was deleted). That is why these actions should be put in a transaction. You end your transaction using the <span class="methodref">commit</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
@@ -732,7 +699,6 @@ users.delete(user2.id);
 walls.delete(wall2.id);
 tx.commit();
 </pre>
-
 
 <h3 class="tut_title">50. Transaction rollback</h3>
 <p><span class="tut_desc">You can make a rollback of a transaction using <span class="methodref">rollback</span> method. You desire to delete user 5 together with his wall. But user 5 has no wall. So the deletion of the unexisting wall will throw an exception, giving you the chance to make a rollback on the transaction and return to the previous state in the catch part.</span></p>
@@ -748,13 +714,11 @@ try {
 }
 </pre>
 
-
 <h3 class="tut_title">51. Deleting the content of a table</h3>
 <p><span class="tut_desc">You can delete the content of a table using <span class="methodref">clear</span> method.</span></p>
 <pre class="prettyprint eg_code lang-java">
 users.clear();
 </pre>
-
 
 <h3 class="tut_title">52. Shutdown the database</h3>
 <p><span class="tut_desc">The database can be stopped gracefully with the <span class="methodref">shutdown</span> method.</span></p>

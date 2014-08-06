@@ -1,0 +1,6 @@
+<h3 class="tut_title">{{i+1}}. {{doc(x[0], '<br/>').replace(/\^(\w+)\^/g, '<span class="methodref">$1</span>')}}</h3>
+<p><span class="tut_desc">{{x[1].replace(/\^(\w+)\^/g, '<span class="methodref">$1</span>').replace(/\`(\w+)\`/g, '<span class="named">$1</span>').replace(/\s+\*\s*$/mg,'<br/><br/>').replace(/(\s+\*\s+|\/\*|\*\/|\/\/)/g, ' ')}}</span></p>
+<pre class="prettyprint eg_code lang-java">
+{{html(x[2].replace(/\*\//g, '').trim())}}
+</pre>
+{{ (y[0].length != 0)? '<pre>'+ y[0] +'</pre>' :"" }}
