@@ -84,10 +84,15 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h4>
-					It's very easy to start using OhmDB - just
-					<a href="download.html">download ohmdb.jar</a>
-					and add it to your project.
+					It's very easy to start using OhmDB - just add it to your project as Maven dependency:
 				</h4>
+<pre class="prettyprint eg_code lang-xml">
+&lt;dependency&gt;
+    &lt;groupId&gt;com.ohmdb&lt;/groupId&gt;
+    &lt;artifactId&gt;ohmdb-all&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</pre>
 			</div>
 		</div>
 
@@ -95,7 +100,7 @@
 			<div class="col-md-12">
 			
 
-<h3 class="tut_title">1. new File("socialnet.db").delete();<br/>Creating the database</h3>
+<h3 class="tut_title">1. Creating the database</h3>
 <p><span class="tut_desc">Let's "make" a simple social network application. The first thing we need is a database, so let's create one.</span></p>
 <pre class="prettyprint eg_code lang-java">
 Db db = Ohm.db(&quot;socialnet.db&quot;);
