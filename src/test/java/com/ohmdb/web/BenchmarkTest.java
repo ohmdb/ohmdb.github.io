@@ -100,7 +100,7 @@ public class BenchmarkTest {
 
 		db.shutdown();
 
-		finish("insert");
+		finish("insert", 0);
 		System.out.println();
 	}
 
@@ -121,7 +121,7 @@ public class BenchmarkTest {
 
 		db.shutdown();
 
-		finish("update");
+		finish("update", 0);
 		System.out.println();
 	}
 
@@ -138,7 +138,7 @@ public class BenchmarkTest {
 
 		db.shutdown();
 
-		finish("set");
+		finish("set", 0);
 		System.out.println();
 	}
 
@@ -190,7 +190,7 @@ public class BenchmarkTest {
 
 		System.out.println(connN + " of " + total + " random couples were connected at rank " + n);
 
-		finish(n + " join(s)");
+		finish(n + " join(s)", usersN);
 		System.out.println();
 	}
 
@@ -210,12 +210,12 @@ public class BenchmarkTest {
 
 		db.shutdown();
 
-		finish("link");
+		finish("link", 0);
 		System.out.println();
 		return all;
 	}
 
-	private void finish(String info) {
+	private void finish(String info, long count) {
 		String infoN = info + "N";
 
 		List<Long> measure = measurements.get(info);
@@ -229,7 +229,12 @@ public class BenchmarkTest {
 		}
 
 		measure.add(Measure.finish(info));
-		measureN.add((long) Measure.getCount());
+
+		if (count == 0) {
+			count = Measure.getCount();
+		}
+
+		measureN.add(count);
 	}
 
 }
